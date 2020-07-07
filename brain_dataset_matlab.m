@@ -24,7 +24,7 @@ imSize  = [2 2].*max(trajectory(:));
 [nFE,nSpokes,nCh] = size(rawdata);
 
 k = squeeze(complex(trajectory(1,:,:),trajectory(2,:,:)));
-k = k/(2*max(k(:)));
+k = k/(-2*max(abs(k(:))));
 
 FT = NUFFT(k,abs(k),imSize,nCh);
 img_grid = FT'*rawdata;
