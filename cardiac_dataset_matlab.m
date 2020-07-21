@@ -10,7 +10,6 @@
 
 clear variables; clc; close all; 
 addpath(fullfile(pwd,'nufft_files'));
-addpath(fullfile(pwd,'siv'));
 
 %% Load data
 
@@ -28,8 +27,11 @@ k = k/(2*max(abs(k(:))));
 
 FT = NUFFT(k,abs(k),imSize,nCh);
 img_grid = FT'*rawdata;
-img_igrid_sos = sqrt(sum(abs(img_grid.^2),3));
-csm = img_grid./repmat(img_igrid_sos,[1 1 nCh]);
+%img_igrid_sos = sqrt(sum(abs(img_grid.^2),3));
+%csm = img_grid./repmat(img_grid_sos,[1 1 nCh]);
+[~,csm] = openadapt(permute(img_grid,[3 1 2]),1);
+csm = permute(csm,[2 3 1]);
+
 
 %% Subsampling
 

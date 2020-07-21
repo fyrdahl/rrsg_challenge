@@ -41,7 +41,6 @@ classdef SENSE
             obj.imSize = Nd;
             obj.adjoint = 0;
             obj.dataSize = size(k);
-            
         end
         
         function out = mtimes(obj,in)
